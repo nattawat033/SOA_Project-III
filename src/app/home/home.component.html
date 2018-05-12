@@ -1,0 +1,251 @@
+<div class="bg">
+  <div class="navbar">
+
+    <a >&#9776; Welcome {{model.user['name']}}</a>
+
+    <div class="dropdown">
+      <button class="dropbtn">Setting
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/login">ออกจากระบบ</a>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <ul id="all" style="visibility: visible; 
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: white;
+            position: absolute;
+            top: 45px;
+            left:250px;
+            width: 69%;
+            text-align: center;
+            overflow: auto; ">
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class="one">Animal Foods
+      <br>
+      <br>
+      <br>
+      <br>
+    </h1>
+
+    <br>
+
+    <br>
+
+
+    <h3 class="two"> สินค้า
+      <br>
+      <br>
+      <br>
+    </h3>
+    <li *ngFor="let product of model.product" style="float:left;">
+      {{product['title']}}
+      <a (click)="clickProduct(product['productID'])" style="display: block; 
+                  color: black;
+                  text-align: center;
+                  padding: 14px 16px;
+                  text-decoration: none;">
+        <img [src]="product['picture']" style="width:300px;height:200px;margin:2px 0px;
+          box-shadow:#999 1px 1px 3px 1px; 
+          cursor: pointer ">
+        <br> {{product['description']}}
+        <br> ราคา:{{product['price']}} น้ำหนัก:{{product['weight_kg']}}</a>
+      <br>
+    </li>
+
+  </ul>
+
+  <ul id="all2" style="visibility: hidden; 
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: white;
+        position: absolute;
+        top: 45px;
+        left:250px;
+        width: 69%;
+        
+        overflow: auto; ">
+    <br>
+    <div>
+      <button (click)="back('all2')" value="back" class="button button1">
+        <span>Back </span>
+      </button>
+    </div>
+    
+    <div class="center" style="float: center;padding: 15px; margin-left:38%;margin-right:70%;">
+      <h2 style="text-align: center ; margin-left:100px">{{model.productOne['title']}}</h2>
+        
+      <img [src]="model.productOne['picture']" style="width:300px;height:300px;margin:2px 0px;text-align: center;
+        box-shadow:#999 1px 1px 3px 1px; 
+        cursor: pointer ">
+    </div>
+
+
+    <div style="text-align: center; margin-left:100px; margin-top:0%;">
+      <h2> {{model.productOne['description']}} </h2>
+    </div>
+
+    <div style="float:right">
+        <button (click)="back('detail')" value="back" class="button button1">
+          <span>เลือกสินค้านี้ </span>
+        </button>
+      </div>
+    <br><br><br><br>
+    <p class="left" style="margin-left:100px; font-size:20px">รายละเอียดสินค้า : </p>
+    <p style="margin-left:200px;"> ราคา {{model.productOne['price']}} </p>
+    <p style="margin-left:200px;"> น้ำหนัก {{model.productOne['weight_kg']}} </p> 
+
+
+
+
+    <p class="left" style="margin-left:100px; font-size:20px">รีวิวจากผู้ใช้รายอื่น </p>
+    <div class="center" style="margin-left:100px; margin-right:100px;padding:10px;">
+       <li *ngFor="let review of model.productReviewOne" style="margin-left:5%">
+          <p style="margin-left:70px;"> Rating : {{review['rating']}} </p>
+          <p style="margin-left:70px;"> Comment :  {{review['comment']}} </p>
+          <p style="margin-left:70px;"> Review By : {{review['reviewer']}}</p>
+          <br><br>
+        </li>
+    </div>
+
+  </ul>
+
+  <ul id="all3" style="visibility: hidden; 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left:250px;
+    width: 69%;
+    
+    overflow: auto; ">
+    <br>
+    <div>
+      <button (click)="back('all3')" value="back" class="button button1">
+        <span>Back </span>
+      </button>
+    </div>
+
+    <p class="left" style="margin-left:100px; font-size:20px">ข้อมูลส่วนตัว  </p>
+      <p style="margin-left:200px;"> ที่อยุ่ : {{model.user['address']}} </p>
+      <p style="margin-left:200px;"> อีเมล์ : {{model.user['email']}} </p>
+      <p style="margin-left:200px;"> ชื่อผู้ใช้ : {{model.user['name']}} </p>
+      <p style="margin-left:200px;"> เบอร์โทร : {{model.user['telno']}} </p>
+      <p style="margin-left:200px;"> เงินคงเหลือ : {{model.userDetail[0]['balance']}} </p>
+    <br>
+    <input type="text" style="left:150px" [(ngModel)]="model.balance">
+    <div>
+        <button style="margin-left:200px" (click)="addBalance()" value="back" class="button button1">
+          <span>Add balance </span>
+        </button>
+      </div>
+
+    <p class="left" style="margin-left:100px; font-size:20px">ข้อมูล การจ่ายเงิน  </p>
+    <li *ngFor="let paymentDetail of model.paymentDetail">
+      <p style="margin-left:200px;"> ID : {{paymentDetail['_id']}} </p>
+      <p style="margin-left:200px;"> Order ID : {{paymentDetail['orderId']}} </p>
+      <p style="margin-left:200px;"> Web Name : {{paymentDetail['webName']}} </p>
+      <p style="margin-left:200px;"> ราคา : {{paymentDetail['price']}} </p>
+      <p style="margin-left:200px;"> วันเวลา : {{paymentDetail['dataTime']}} </p>
+    </li>
+    <br>
+
+    <div class="center" style="float: center;padding: 15px; margin-left:38%;margin-right:70%;">
+        <h2 style="text-align: center ; margin-left:100px">{{model.productOne['title']}}</h2>
+          
+        <img [src]="model.productOne['picture']" style="width:300px;height:300px;margin:2px 0px;text-align: center;
+          box-shadow:#999 1px 1px 3px 1px; 
+          cursor: pointer ">
+      </div>
+  
+  
+      <div style="text-align: center; margin-left:100px; margin-top:0%;">
+        <h2> {{model.productOne['description']}} </h2>
+      </div>
+  
+      <div style="float:right">
+          <button (click)="newPayment()" value="check out" class="button button1">
+            <span> Check Out </span>
+          </button>
+        </div>
+      <br><br><br><br>
+      <p class="left" style="margin-left:100px; font-size:20px">รายละเอียดสินค้า : </p>
+      <p style="margin-left:200px;"> ราคา {{model.productOne['price']}} </p>
+      <p style="margin-left:200px;"> น้ำหนัก {{model.productOne['weight_kg']}} </p> 
+      <p style="margin-left:200px;"> จำนวน 1 ชิ้น </p> 
+
+
+
+
+
+
+
+    
+  </ul>
+
+  <ul id="main" style="visibility: hidden; 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left:250px;
+    width: 69%;
+    
+    overflow: auto; ">
+    <br>
+    <div>
+      <button (click)="back('main')" value="back" class="button button1">
+        <span>Back </span>
+      </button>
+    </div>
+
+    <p class="left" style="margin-left:100px; font-size:20px">ข้อมูลส่วนตัว  </p>
+      <p style="margin-left:200px;"> ที่อยุ่ : {{model.user['address']}} </p>
+      <p style="margin-left:200px;"> อีเมล์ : {{model.user['email']}} </p>
+      <p style="margin-left:200px;"> ชื่อผู้ใช้ : {{model.user['name']}} </p>
+      <p style="margin-left:200px;"> เบอร์โทร : {{model.user['telno']}} </p>
+      <p style="margin-left:200px;"> เงินคงเหลือ : {{model.userDetail[0]['balance']}} </p>
+    <br>
+    <input type="text" style="left:150px" [(ngModel)]="model.balance">
+    <div>
+        <button style="margin-left:200px" (click)="addBalance()" value="back" class="button button1">
+          <span>Add balance </span>
+        </button>
+      </div>
+
+    <p class="left" style="margin-left:100px; font-size:20px">ข้อมูล การจ่ายเงิน  </p>
+    <li *ngFor="let paymentDetail of model.paymentDetail">
+      <p style="margin-left:200px;"> ID : {{paymentDetail['_id']}} </p>
+      <p style="margin-left:200px;"> Order ID : {{paymentDetail['orderId']}} </p>
+      <p style="margin-left:200px;"> Web Name : {{paymentDetail['webName']}} </p>
+      <p style="margin-left:200px;"> ราคา : {{paymentDetail['price']}} </p>
+      <p style="margin-left:200px;"> วันเวลา : {{paymentDetail['dataTime']}} </p>
+    </li>
+    <br>
+
+  </ul>
+
+
+
+
+</div>

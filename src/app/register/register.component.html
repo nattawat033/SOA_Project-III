@@ -1,0 +1,42 @@
+
+
+<div id="login-box">
+    <div class="left">
+        <h1>Sign up</h1>
+        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+            <div [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+                <input type="text" name="address" [(ngModel)]="model['address']" #address="ngModel" required placeholder="Address" />
+                <div *ngIf="f.submitted && !address.valid" class="help-block">Address is required</div>
+            </div>
+            <div [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+                <input type="text" name="email" [(ngModel)]="model['email']" #email="ngModel" required placeholder="E-mail" />
+                <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+            </div>
+            <div [ngClass]="{ 'has-error': f.submitted && !lastname.valid }">
+                    <input type="text" name="lastname" [(ngModel)]="model['lastname']" #lastname="ngModel" required placeholder="Lastname" />
+                    <div *ngIf="f.submitted && !lastname.valid" class="help-block">Lastname is required</div>
+                </div>
+            
+            <div [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                <input type="text" name="name" [(ngModel)]="model['name']" #name="ngModel" required placeholder="Name" />
+                <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+            </div>
+            <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                <input type="password" name="password" [(ngModel)]="model['password']" #password="ngModel" required placeholder="Password" />
+                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            </div>
+            <div [ngClass]="{ 'has-error': f.submitted && !telno.valid }">
+                <input type="text" name="telno" [(ngModel)]="model['telno']" #telno="ngModel" required placeholder="Tel-no" />
+                <div *ngIf="f.submitted && !telno.valid" class="help-block">Tel-no is required</div>
+            </div>
+            
+
+            <!-- <input type="password" name="password2" placeholder="Retype password" /> -->
+            <input type="submit" name="signup_submit" value="Sign me up" />
+        </form>
+    </div>
+
+    <div class="right">
+    </div>
+
+</div>
